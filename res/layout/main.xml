@@ -10,13 +10,23 @@
             android:layout_height="wrap_content"
             android:text="@string/tasks"
             />
-    <TextView
-            android:id="@+id/task_list_text"
+    <ListView
+            android:id="@id/android:list"
             android:layout_below="@id/tasks_title"
             android:layout_above="@+id/add_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             />
+    <TextView
+            android:id="@id/android:empty"
+            android:text="@string/no_data"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_below="@id/tasks_title"
+            android:layout_above="@+id/add_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+
     <Button
             android:id="@id/add_button"
             android:layout_width="fill_parent"

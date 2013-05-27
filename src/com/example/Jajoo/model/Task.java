@@ -3,6 +3,7 @@ package com.example.Jajoo.model;
 public class Task {
 
     private String name;
+    private boolean complete;
 
     public Task(String name) {
         this.name = name;
@@ -19,5 +20,13 @@ public class Task {
     @Override
     public String toString() {
         return getName();
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 }

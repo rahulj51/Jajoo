@@ -1,17 +1,16 @@
 package com.example.Jajoo;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import com.example.Jajoo.model.Task;
+import com.example.Jajoo.adapter.TaskListAdapter;
 
-import java.util.List;
-
-public class ViewTasksActivity extends TaskManagerActivity {
+public class ViewTasksActivity extends ListActivity {
     private Button addButton;
-    private TextView taskText;
+    private TaskManagerApplication app;
+    private TaskListAdapter adapter;
 
     /**
      * Called when the activity is first created.
@@ -21,27 +20,20 @@ public class ViewTasksActivity extends TaskManagerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         setUpViews();
+
+        app = (TaskManagerApplication) getApplication();
+        adapter = new TaskListAdapter(app.getCurrentTasks(), app);
+        setListAdapter(adapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        showTasks();
-    }
-
-    private void showTasks() {
-        List<Task> tasks = getTaskManagerApplication().getCurrentTasks();
-        StringBuffer sb = new StringBuffer("");
-        for(Task t : tasks) {
-            sb.append("* " + t.toString() + "\n");
-        }
-        taskText.setText(sb.toString());
-
+        adapter.forceReload();
     }
 
     private void setUpViews() {
         addButton = (Button) findViewById(R.id.add_button);
-        taskText  = (TextView) findViewById(R.id.task_list_text);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
